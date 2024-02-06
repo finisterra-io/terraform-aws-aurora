@@ -21,22 +21,10 @@ variable "tags" {
 # DB Subnet Group
 ################################################################################
 
-variable "create_db_subnet_group" {
-  description = "Determines whether to create the database subnet group or use existing"
-  type        = bool
-  default     = false
-}
-
 variable "db_subnet_group_name" {
   description = "The name of the subnet group name (existing or created)"
   type        = string
   default     = ""
-}
-
-variable "subnets" {
-  description = "List of subnet IDs used by database subnet group created"
-  type        = list(string)
-  default     = []
 }
 
 ################################################################################
@@ -47,12 +35,6 @@ variable "is_primary_cluster" {
   description = "Determines whether cluster is primary cluster with writer instance (set to `false` for global cluster and replica clusters)"
   type        = bool
   default     = true
-}
-
-variable "cluster_use_name_prefix" {
-  description = "Whether to use `name` as a prefix for the cluster"
-  type        = bool
-  default     = false
 }
 
 variable "allocated_storage" {
@@ -211,12 +193,6 @@ variable "master_user_secret_kms_key_id" {
   default     = null
 }
 
-variable "master_password" {
-  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file. Required unless `manage_master_user_password` is set to `true` or unless `snapshot_identifier` or `replication_source_identifier` is provided or unless a `global_cluster_identifier` is provided when the cluster is the secondary cluster of a global database"
-  type        = string
-  default     = null
-}
-
 variable "master_username" {
   description = "Username for the master DB user. Required unless `snapshot_identifier` or `replication_source_identifier` is provided or unless a `global_cluster_identifier` is provided when the cluster is the secondary cluster of a global database"
   type        = string
@@ -319,12 +295,6 @@ variable "vpc_security_group_ids" {
   default     = []
 }
 
-variable "cluster_timeouts" {
-  description = "Create, update, and delete timeout configurations for the cluster"
-  type        = map(string)
-  default     = {}
-}
-
 ################################################################################
 # Cluster Instance(s)
 ################################################################################
@@ -395,12 +365,6 @@ variable "publicly_accessible" {
   default     = null
 }
 
-variable "instance_timeouts" {
-  description = "Create, update, and delete timeout configurations for the cluster instance(s)"
-  type        = map(string)
-  default     = {}
-}
-
 ################################################################################
 # Cluster Endpoint(s)
 ################################################################################
@@ -425,64 +389,10 @@ variable "iam_roles" {
 # Enhanced Monitoring
 ################################################################################
 
-variable "create_monitoring_role" {
-  description = "Determines whether to create the IAM role for RDS enhanced monitoring"
-  type        = bool
-  default     = true
-}
-
 variable "monitoring_role_arn" {
   description = "IAM role used by RDS to send enhanced monitoring metrics to CloudWatch"
   type        = string
   default     = ""
-}
-
-variable "iam_role_name" {
-  description = "Friendly name of the monitoring role"
-  type        = string
-  default     = null
-}
-
-variable "iam_role_use_name_prefix" {
-  description = "Determines whether to use `iam_role_name` as is or create a unique name beginning with the `iam_role_name` as the prefix"
-  type        = bool
-  default     = false
-}
-
-variable "iam_role_description" {
-  description = "Description of the monitoring role"
-  type        = string
-  default     = null
-}
-
-variable "iam_role_path" {
-  description = "Path for the monitoring role"
-  type        = string
-  default     = null
-}
-
-variable "iam_role_managed_policy_arns" {
-  description = "Set of exclusive IAM managed policy ARNs to attach to the monitoring role"
-  type        = list(string)
-  default     = null
-}
-
-variable "iam_role_permissions_boundary" {
-  description = "The ARN of the policy that is used to set the permissions boundary for the monitoring role"
-  type        = string
-  default     = null
-}
-
-variable "iam_role_force_detach_policies" {
-  description = "Whether to force detaching any policies the monitoring role has before destroying it"
-  type        = bool
-  default     = null
-}
-
-variable "iam_role_max_session_duration" {
-  description = "Maximum session duration (in seconds) that you want to set for the monitoring role"
-  type        = number
-  default     = null
 }
 
 ################################################################################
@@ -546,58 +456,15 @@ variable "autoscaling_target_connections" {
 ################################################################################
 # Security Group
 ################################################################################
-
-variable "create_security_group" {
-  description = "Determines whether to create security group for RDS cluster"
-  type        = bool
-  default     = false
-}
-
-variable "security_group_name" {
-  description = "The security group name. Default value is (`var.name`)"
-  type        = string
-  default     = ""
-}
-
-variable "security_group_use_name_prefix" {
-  description = "Determines whether the security group name (`var.name`) is used as a prefix"
-  type        = bool
-  default     = true
-}
-
-variable "security_group_description" {
-  description = "The description of the security group. If value is set to empty string it will contain cluster name in the description"
-  type        = string
-  default     = null
-}
-
 variable "vpc_id" {
   description = "ID of the VPC where to create security group"
   type        = string
   default     = ""
 }
 
-variable "security_group_rules" {
-  description = "Map of security group rules to add to the cluster security group created"
-  type        = any
-  default     = {}
-}
-
-variable "security_group_tags" {
-  description = "Additional tags for the security group"
-  type        = map(string)
-  default     = {}
-}
-
 ################################################################################
 # Cluster Parameter Group
 ################################################################################
-
-variable "create_db_cluster_parameter_group" {
-  description = "Determines whether a cluster parameter should be created or use existing"
-  type        = bool
-  default     = false
-}
 
 variable "db_cluster_parameter_group_name" {
   description = "The name of the DB cluster parameter group"
@@ -605,103 +472,9 @@ variable "db_cluster_parameter_group_name" {
   default     = null
 }
 
-variable "db_cluster_parameter_group_use_name_prefix" {
-  description = "Determines whether the DB cluster parameter group name is used as a prefix"
-  type        = bool
-  default     = true
-}
-
-variable "db_cluster_parameter_group_description" {
-  description = "The description of the DB cluster parameter group. Defaults to \"Managed by Terraform\""
-  type        = string
-  default     = null
-}
-
-variable "db_cluster_parameter_group_family" {
-  description = "The family of the DB cluster parameter group"
-  type        = string
-  default     = ""
-}
-
-variable "db_cluster_parameter_group_parameters" {
-  description = "A list of DB cluster parameters to apply. Note that parameters may differ from a family to an other"
-  type        = list(map(string))
-  default     = []
-}
-
-################################################################################
-# DB Parameter Group
-################################################################################
-
-variable "create_db_parameter_group" {
-  description = "Determines whether a DB parameter should be created or use existing"
-  type        = bool
-  default     = false
-}
-
-variable "db_parameter_group_use_name_prefix" {
-  description = "Determines whether the DB parameter group name is used as a prefix"
-  type        = bool
-  default     = true
-}
-
-variable "db_parameter_group_description" {
-  description = "The description of the DB parameter group. Defaults to \"Managed by Terraform\""
-  type        = string
-  default     = null
-}
-
-variable "db_parameter_group_family" {
-  description = "The family of the DB parameter group"
-  type        = string
-  default     = ""
-}
-
-variable "db_parameter_group_parameters" {
-  description = "A list of DB parameters to apply. Note that parameters may differ from a family to an other"
-  type        = list(map(string))
-  default     = []
-}
-
 ################################################################################
 # CloudWatch Log Group
 ################################################################################
-
-variable "create_cloudwatch_log_group" {
-  description = "Determines whether a CloudWatch log group is created for each `enabled_cloudwatch_logs_exports`"
-  type        = bool
-  default     = false
-}
-
-variable "cloudwatch_log_group_retention_in_days" {
-  description = "The number of days to retain CloudWatch logs for the DB instance"
-  type        = number
-  default     = 7
-}
-
-variable "cloudwatch_log_group_kms_key_id" {
-  description = "The ARN of the KMS Key to use when encrypting log data"
-  type        = string
-  default     = null
-}
-
-variable "db_subnet_group_description" {
-  description = "The description of the DB subnet group"
-  type        = string
-  default     = null
-}
-
-variable "db_subnet_group_tags" {
-  description = "A map of tags to add to the DB subnet group"
-  type        = map(string)
-  default     = {}
-}
-
-variable "db_parameter_group_tags" {
-  description = "A map of tags to add to the DB parameter group"
-  type        = map(string)
-  default     = {}
-}
 
 variable "scalable_dimension" {
   description = "The scalable dimension for the scalable target"
@@ -727,44 +500,6 @@ variable "autoscaling_policy_type" {
   default     = "TargetTrackingScaling"
 }
 
-variable "monitoring_role_name" {
-  description = "The name of the monitoring role"
-  type        = string
-  default     = null
-}
-
-
-variable "monitoring_role_description" {
-  description = "The description of the monitoring role"
-  type        = string
-  default     = null
-}
-
-variable "monitoring_role_permissions_boundary" {
-  description = "The ARN of the policy that is used to set the permissions boundary for the monitoring role"
-  type        = string
-  default     = null
-}
-
-
-variable "monitoring_role_path" {
-  description = "The path of the monitoring role"
-  type        = string
-  default     = "/"
-}
-
-variable "monitoring_role_tags" {
-  description = "A map of tags to add to the monitoring role"
-  type        = map(string)
-  default     = {}
-}
-
-variable "monitoring_role_max_session_duration" {
-  description = "The maximum session duration (in seconds) that you want to set for the monitoring role"
-  type        = number
-  default     = 3600
-}
-
 variable "vpc_name" {
   description = "The name of the VPC"
   type        = string
@@ -773,12 +508,6 @@ variable "vpc_name" {
 
 variable "kms_key_alias" {
   description = "The alias of the KMS key"
-  type        = string
-  default     = null
-}
-
-variable "performance_insights_kms_key_alias" {
-  description = "The alias of the Performance Insights KMS key"
   type        = string
   default     = null
 }
