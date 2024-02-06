@@ -1,10 +1,8 @@
-data "aws_partition" "current" {}
 
 locals {
   port = coalesce(var.port, (var.engine == "aurora-postgresql" || var.engine == "postgres" ? 5432 : 3306))
 
-  cluster_parameter_group_name = try(coalesce(var.db_cluster_parameter_group_name, var.name), null)
-  is_serverless                = var.engine_mode == "serverless"
+  is_serverless = var.engine_mode == "serverless"
 }
 
 ################################################################################
