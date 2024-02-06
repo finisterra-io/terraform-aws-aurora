@@ -501,7 +501,7 @@ variable "autoscaling_policy_type" {
 }
 
 variable "vpc_name" {
-  description = "The name of the VPC"
+  description = "The name of the VPC "
   type        = string
   default     = null
 }
