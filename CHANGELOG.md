@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.2](https://github.com/finisterra-io/terraform-aws-aurora/compare/v1.0.1...v1.0.2) (2024-02-16)
+
+
+### Bug Fixes
+
+* lifecycle ([ba4e6fc](https://github.com/finisterra-io/terraform-aws-aurora/commit/ba4e6fc99bb26f0fdaf6f595dd1d7ffacd66e973))
+
 ### [1.0.1](https://github.com/finisterra-io/terraform-aws-aurora/compare/v1.0.0...v1.0.1) (2024-02-07)
 
 
