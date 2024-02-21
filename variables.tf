@@ -301,9 +301,27 @@ variable "vpc_security_group_ids" {
 
 variable "instances" {
   description = "Map of cluster instances and any specific/overriding attributes to be created"
-  type        = any
-  default     = {}
+  type = map(object({
+    identifier : string
+    copy_tags_to_snapshot : optional(bool)
+    preferred_maintenance_window : optional(string)
+    tags : map(string)
+    instance_class : optional(string)
+    performance_insights_enabled : optional(bool)
+    performance_insights_kms_key_alias : optional(string)
+    performance_insights_retention_period : optional(number)
+    promotion_tier : optional(number)
+    db_parameter_group_name : optional(string)
+    apply_immediately : optional(bool)
+    auto_minor_version_upgrade : optional(bool)
+    monitoring_interval : optional(number)
+    monitoring_role_arn : optional(string)
+    publicly_accessible : optional(bool)
+    identifier_prefix : optional(string)
+  }))
+  default = {}
 }
+
 
 variable "auto_minor_version_upgrade" {
   description = "Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. Default `true`"

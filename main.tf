@@ -143,7 +143,6 @@ resource "aws_rds_cluster_instance" "this" {
   promotion_tier                        = try(each.value.promotion_tier, null)
   publicly_accessible                   = try(each.value.publicly_accessible, var.publicly_accessible)
   tags                                  = try(each.value.tags, var.tags)
-
 }
 
 ################################################################################
