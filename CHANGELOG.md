@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.3](https://github.com/finisterra-io/terraform-aws-aurora/compare/v1.0.2...v1.0.3) (2024-02-21)
+
+
+### Bug Fixes
+
+* instances variable type ([b9e40e8](https://github.com/finisterra-io/terraform-aws-aurora/commit/b9e40e8d07da9aa529f5e7f39f6ebf8c5c42033a))
+
 ### [1.0.2](https://github.com/finisterra-io/terraform-aws-aurora/compare/v1.0.1...v1.0.2) (2024-02-16)
 
 
