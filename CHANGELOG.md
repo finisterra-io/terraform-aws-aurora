@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.4](https://github.com/finisterra-io/terraform-aws-aurora/compare/v1.0.3...v1.0.4) (2024-03-19)
+
+
+### Bug Fixes
+
+* add tfsec ([0781ebd](https://github.com/finisterra-io/terraform-aws-aurora/commit/0781ebdf732808bb82c4cea2a9265f86ec118b7c))
+* Add trivy ([b92d26a](https://github.com/finisterra-io/terraform-aws-aurora/commit/b92d26a22f1e9c12fad92f149a01f089e3da52d2))
+* Add trivy ([5a36b80](https://github.com/finisterra-io/terraform-aws-aurora/commit/5a36b80df9acbb62e4454bc169e4c6b50ae38434))
+
 ### [1.0.3](https://github.com/finisterra-io/terraform-aws-aurora/compare/v1.0.2...v1.0.3) (2024-02-21)
 
 
