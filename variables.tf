@@ -106,7 +106,7 @@ variable "db_cluster_db_instance_parameter_group_name" {
 variable "deletion_protection" {
   description = "If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`"
   type        = bool
-  default     = null
+  default     = true
 }
 
 variable "enable_global_write_forwarding" {
